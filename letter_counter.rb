@@ -16,9 +16,9 @@ def letter_counter string
   result.sort_by { |k,v| v }.reverse.to_h
 end
 
-def encrypt string
+def encrypt string, shift='m'
   original = ('a'..'z').to_a
-  shifted = ('m'..'z').to_a + ('a'..'l').to_a
+  shifted = (shift..'z').to_a + ('a'..shift).to_a
 
   result = ""
   string.downcase.split("").each do |letter|
@@ -34,3 +34,4 @@ end
 
 pp letter_counter File.read "corpus.txt"
 pp encrypt "Hello, my name is James"
+pp encrypt "Hello, my name is James", "f"
