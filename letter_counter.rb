@@ -16,6 +16,21 @@ def letter_counter string
   result.sort_by { |k,v| v }.reverse.to_h
 end
 
+def word_counter string
+  words = string.downcase.split # or split(" ")
+  result = {}
+
+  words.each do |w|
+    if result[w]
+      result[w] += 1
+    else
+      result[w] = 1
+    end
+  end
+
+  result.sort_by { |k,v| v }.reverse.to_h
+end
+
 def encrypt string, shift='m'
   original = ('a'..'z').to_a
   shifted = (shift..'z').to_a + ('a'..shift).to_a
@@ -32,11 +47,22 @@ def encrypt string, shift='m'
   result
 end
 
+def count_words_or_letters body
+  puts "Letters or words (l/w)?"
+  if gets.chomp == "w"
+    word_counter body
+  else
+    letter_counter body
+  end
+end
+
 if ARGV.first
-  pp letter_counter File.read ARGV.first
+  contents = File.read ARGV.first
+  count_words_or_letters contents
 else
   puts "What file should we count?"
-  pp letter_counter File.read gets.chomp
+  contents = File.read gets.chomp
+  count_words_or_letters contents
 end
 
 pp encrypt "Hello, my name is James"
