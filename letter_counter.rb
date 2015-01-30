@@ -5,6 +5,7 @@ def letter_counter string
   result = {}
 
   letters.each do |l|
+    next unless ('a'..'z').include? l
     if result[l]
       result[l] += 1
     else
