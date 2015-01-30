@@ -1,7 +1,7 @@
 require 'pry'
 
 def letter_counter string
-  letters = string.split("")
+  letters = string.downcase.split("")
   result = {}
 
   letters.each do |l|
@@ -13,7 +13,7 @@ def letter_counter string
     end
   end
 
-  result
+  result.sort_by { |k,v| v }.reverse.to_h
 end
 
 pp letter_counter File.read "corpus.txt"

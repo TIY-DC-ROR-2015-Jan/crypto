@@ -5,7 +5,8 @@ def letter_counter string
   string.downcase.chars.
     select { |l| ('a'..'z').include? l }.
     each { |l| result[l] += 1 }
-  result
+
+  result.sort_by { |k,v| -v }.to_h
 end
 
 pp letter_counter File.read "corpus.txt"
