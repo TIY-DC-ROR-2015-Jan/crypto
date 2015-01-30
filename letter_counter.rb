@@ -32,6 +32,12 @@ def encrypt string, shift='m'
   result
 end
 
-pp letter_counter File.read "corpus.txt"
+if ARGV.first
+  pp letter_counter File.read ARGV.first
+else
+  puts "What file should we count?"
+  pp letter_counter File.read gets.chomp
+end
+
 pp encrypt "Hello, my name is James"
 pp encrypt "Hello, my name is James", "f"

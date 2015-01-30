@@ -16,6 +16,13 @@ def encrypt string, shift='m'
   string.downcase.chars.map { |l| assignment.fetch l, l }.join
 end
 
-pp letter_counter File.read "corpus.txt"
+def prompt_for_file_path
+  puts "What file should we count?"
+  gets.chomp
+end
+
+file_path = ARGV.first || prompt_for_file_path
+
+pp letter_counter File.read file_path
 pp encrypt "Hello, my name is James"
 pp encrypt "Hello, my name is James", "f"
