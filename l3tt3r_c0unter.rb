@@ -2,7 +2,7 @@ require 'pry'
 
 def letter_counter string
   result = Hash.new 0
-  string.chars.
+  string.downcase.chars.
     select { |l| ('a'..'z').include? l }.
     each { |l| result[l] += 1 }
   result
